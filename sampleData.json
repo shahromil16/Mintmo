@@ -1,0 +1,16 @@
+
+
+{
+  "cols": [
+        {"id":"","label":"City","pattern":"","type":"string"},
+        {"id":"","label":"Requests","pattern":"","type":"number"}
+      ],
+
+"rows": [
+        {"c":[{"v":"MA","f":null},{"v":3,"f":null}]},
+        {"c":[{"v":"CT","f":null},{"v":11,"f":null}]},
+        {"c":[{"v":"NY","f":null},{"v":10,"f":null}]},
+        {"c":[{"v":"NJ","f":null},{"v":11,"f":null}]},
+        {"c":[{"v":"PA","f":null},{"v":15,"f":null}]}
+      ]
+}

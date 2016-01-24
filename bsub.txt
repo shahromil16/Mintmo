@@ -1,0 +1,8 @@
+{
+  "_id": "56241a13de4bf40b17112864",
+  "balance": 20476,
+  "customer_id": "56241a12de4bf40b17111f95",
+  "nickname": "Tolbert's Account",
+  "rewards": 38676,
+  "type": "Credit Card"
+}

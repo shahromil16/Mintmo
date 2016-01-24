@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+	  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+   
+    <script type="text/javascript">
+      // Load the Visualization API and the piechart package.
+      google.load('visualization', '1.0', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.setOnLoadCallback(drawChart);
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var jsonData = $.ajax({
+		
+		url:"getData.php",
+		dataType: "json",
+		async:false,
+		}).responseText;
+		
+		var data=new google.visualization.DataTable(jsonData);
+		
+		var chart=new google.visualization.PieChart(document.getElementById('chart_div'));
+		chart.draw(data,{width:850,height:720});
+
+        function selectHandler(){
+		var selectedItem=chart.getSelection()[0];
+		if(selectedItem)
+		{
+		var city=data.getValue(selectedItem.row,0);
+		var req=data.getValue(selectedItem.row,1);
+		alert('There are '+req+ ' requests for ATM in ' +city);
+		}
+		
+		
+		}
+		google.visualization.events.addListener(chart,'select',selectHandler);
+
+      }
+	  function buffer(){
+    setTimeout(function () {drawChart();}, 1000);
+}
+
+
+$(document).ready(function(){
+
+  $("#btn1").click(function(){
+     buffer();
+   });
+})
+    </script>
+  </head>
+
+  <body>
+    <!--Div that will hold the pie chart-->
+	<h2>Analysis of people requesting for ATM in given States</h1>
+    <div id="chart_div"></div>
+	<button class="btn btn-lg btn-success" id="btn1">Refresh the Chart</button>
+  </body>
+</html>
